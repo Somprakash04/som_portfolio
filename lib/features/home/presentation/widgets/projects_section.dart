@@ -90,7 +90,7 @@ class ProjectsSection extends ConsumerWidget {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: filteredProjects.length,
-            separatorBuilder: (_, __) => const SizedBox(height: 32),
+            separatorBuilder: (_, _) => const SizedBox(height: 32),
             itemBuilder: (context, index) {
               final project = filteredProjects[index];
               return GlassCard(

@@ -15,11 +15,12 @@ import 'models/social_link_model.dart';
 
 abstract class PortfolioData {
   // ── Personal ─────────────────────────────────────────────────
-  static const String name = 'SP';
-  static const String fullName = 'SP Arun'; // ← Replace with your full name
+  static const String name = "I'm Som";
+  static const String fullName =
+      'Somprakash Arun'; // ← Replace with your full name
   static const String title = 'Flutter Developer';
   static const String location = 'Udaipur, Rajasthan 🇮🇳';
-  static const String email = 'your.email@example.com';
+  static const String email = 'somprakasharun@gmail.com';
   static const String phone = '+91 8854062571';
   static const String profileImage =
       ''; // URL or leave '' for avatar placeholder
@@ -42,126 +43,148 @@ abstract class PortfolioData {
   static const String aboutTitle = 'Crafting Mobile Experiences with Flutter';
 
   static const List<String> aboutParagraphs = [
-    "I'm a Computer Science Engineering student (graduating 2027) and Flutter developer with production-level experience building scalable mobile applications. My journey started with a passion for beautiful, high-performance apps — and evolved into deep expertise across the Flutter ecosystem.",
-    "Currently interning at Cognus Technology, Udaipur, I've shipped full-stack systems that integrate Flutter frontends with Node.js backends, Firebase, hardware interfaces (RFID + ESP32), and AI-powered features. My approach: Clean Architecture, typed error handling with fpdart, and sealed-class state machines in Riverpod 2.x.",
-    "I'm actively building toward roles at AI-first companies — bridging Flutter mobile development with LLM integration and on-device ML.",
+    "I'm a Computer Science Engineering student (graduating 2027) and Flutter "
+        "developer with hands-on experience building scalable, real-world "
+        "mobile applications. My journey started with a passion for clean, "
+        "high-performance apps — and evolved into deep expertise across "
+        "the Flutter ecosystem.",
+    "I recently completed a 4-month internship at Cognus Technology, Udaipur, "
+        "where I shipped full-stack features integrating Flutter frontends with "
+        "Node.js backends, Firebase, and AI-powered capabilities. My approach "
+        "centers on Clean Architecture, typed error handling with fpdart, and "
+        "sealed-class state machines in Riverpod 2.x.",
+    "I'm actively building toward roles at AI-first companies — bridging "
+        "Flutter mobile development with LLM integration and on-device ML.",
   ];
 
   static const List<String> highlights = [
-    'Clean Architecture & SOLID principles',
-    'Riverpod 2.x & BLoC state management',
-    'AI/LLM-powered mobile features',
-    'Full-stack: Firebase, Supabase, Node.js',
-    'Delivered 50+ Dart files in production',
-    'CSE Student — graduating 2027',
+    'Clean Architecture & SOLID Principles',
+    'Riverpod 2.x & BLoC State Management',
+    'AI/LLM-Powered Mobile Features',
+    'Full-Stack: Firebase, Supabase & Node.js',
+    'Built & Shipped 50+ Production-Grade Components',
+    'CSE Student — Graduating 2027',
   ];
 
   static const Map<String, String> stats = {
-    'Projects': '10+',
-    'Dart Files': '200+',
-    'Internship': '1+ yr',
+    'Projects Built': '10+',
+    'Lines of Code': '20K+',
+    'Months Interned': '4',
+    'Tech Tools Used': '10+',
+    'GitHub Commits': '500+',
     'Coffee ☕': '∞',
   };
 
   // ── Skills ────────────────────────────────────────────────────
-  static const List<SkillModel> skills = [
+  static final List<SkillModel> skills = [
     // Mobile
-    SkillModel(
+    const SkillModel(
       name: 'Flutter / Dart',
       category: SkillCategory.mobile,
-      proficiency: 0.95,
+      proficiency: 0.85,
     ),
-    SkillModel(
+    const SkillModel(
       name: 'Riverpod 2.x',
       category: SkillCategory.mobile,
       proficiency: 0.90,
     ),
-    SkillModel(
+    const SkillModel(
       name: 'BLoC Pattern',
       category: SkillCategory.mobile,
       proficiency: 0.85,
     ),
-    SkillModel(
+    const SkillModel(
       name: 'GoRouter',
       category: SkillCategory.mobile,
       proficiency: 0.87,
     ),
-    SkillModel(
+    const SkillModel(
       name: 'Flutter Animate',
       category: SkillCategory.mobile,
       proficiency: 0.84,
     ),
-    SkillModel(
+    const SkillModel(
       name: 'Clean Architecture',
       category: SkillCategory.mobile,
       proficiency: 0.88,
     ),
-    SkillModel(
+    const SkillModel(
       name: 'REST APIs',
       category: SkillCategory.mobile,
       proficiency: 0.90,
     ),
-    SkillModel(
+    const SkillModel(
       name: 'fpdart',
       category: SkillCategory.mobile,
       proficiency: 0.78,
     ),
 
     // Backend
-    SkillModel(
+    const SkillModel(
       name: 'Firebase',
       category: SkillCategory.backend,
       proficiency: 0.88,
     ),
-    SkillModel(
+    const SkillModel(
       name: 'Supabase',
       category: SkillCategory.backend,
       proficiency: 0.80,
     ),
-    SkillModel(
+    const SkillModel(
       name: 'Node.js / Express',
       category: SkillCategory.backend,
       proficiency: 0.76,
     ),
-    SkillModel(
+    const SkillModel(
       name: 'MySQL',
       category: SkillCategory.backend,
       proficiency: 0.74,
     ),
-    SkillModel(
+    const SkillModel(
       name: 'JWT Auth',
       category: SkillCategory.backend,
       proficiency: 0.80,
     ),
-    SkillModel(
+    const SkillModel(
       name: 'FCM Push Notif.',
       category: SkillCategory.backend,
       proficiency: 0.82,
     ),
 
-    // Tools
+    // Core / CS Foundations
     SkillModel(
+      name: 'C++',
+      category: SkillCategory.core,
+      proficiency: 0.85,
+    ),
+    SkillModel(
+      name: 'Data Structures & Algorithms',
+      category: SkillCategory.core,
+      proficiency: 0.85,
+    ),
+    SkillModel(
+      name: 'Object-Oriented Design',
+      category: SkillCategory.core,
+      proficiency: 0.82,
+    ),
+
+    // Tools
+    const SkillModel(
       name: 'Git / GitHub',
       category: SkillCategory.tools,
       proficiency: 0.90,
     ),
-    SkillModel(
-      name: 'Android Studio',
-      category: SkillCategory.tools,
-      proficiency: 0.88,
-    ),
-    SkillModel(name: 'Figma', category: SkillCategory.tools, proficiency: 0.70),
-    SkillModel(
-      name: 'ESP32 / Arduino',
-      category: SkillCategory.tools,
-      proficiency: 0.65,
-    ),
-    SkillModel(
+    const SkillModel(
       name: 'VS Code',
       category: SkillCategory.tools,
       proficiency: 0.92,
     ),
-    SkillModel(
+    const SkillModel(
+      name: 'Android Studio',
+      category: SkillCategory.tools,
+      proficiency: 0.88,
+    ),
+    const SkillModel(
       name: 'Postman',
       category: SkillCategory.tools,
       proficiency: 0.82,
@@ -173,17 +196,22 @@ abstract class PortfolioData {
   static final List<ProjectModel> projects = [
     const ProjectModel(
       id: 'peblo',
-      title: 'Peblo',
+      title: 'Peblo Story Buddy',
       description:
           'AI-powered storytelling & learning platform for children aged 3–10.',
       longDescription:
-          'Peblo is an intelligent children\'s platform built with Flutter. Features include an AI-powered "Story Buddy" module with Pip the robot narrator, text-to-speech narration, comprehension quizzes, and dynamic story generation. Built with Clean Architecture, Riverpod 2.x sealed-class state machines, and fpdart for typed error handling.',
+          'Peblo is an intelligent children\'s learning platform built with '
+          'Flutter. Features include an AI-powered "Story Buddy" module '
+          'with Pip the robot narrator, text-to-speech narration, '
+          'comprehension quizzes, and dynamic story generation using LLMs. '
+          'Architected with Clean Architecture, Riverpod 2.x sealed-class '
+          'state machines, and fpdart for typed, functional error handling.',
       technologies: [
         'Flutter',
         'Dart',
         'Riverpod 2.x',
-        'TTS',
-        'AI/LLM',
+        'Text-to-Speech',
+        'AI/LLM Integration',
         'Clean Architecture',
         'fpdart',
         'GoRouter',
@@ -191,38 +219,19 @@ abstract class PortfolioData {
       category: 'Mobile',
       isFeatured: true,
       accentColor: Color(0xFF8B5CF6),
-      githubUrl: 'https://github.com/your-username/peblo',
-    ),
-    const ProjectModel(
-      id: 'eduguard',
-      title: 'EduGuard',
-      description:
-          'Full production-scale School Security & Attendance Management System.',
-      longDescription:
-          'EduGuard is a comprehensive school management platform with RFID-based attendance. Built with Flutter (50+ Dart files), Node.js/Express REST API, MySQL, RFID RC522 + ESP32 hardware, JWT auth, FCM push notifications. Role-specific portals: Admin, Teacher, Parent, Student.',
-      technologies: [
-        'Flutter',
-        'Node.js',
-        'MySQL',
-        'RFID',
-        'ESP32',
-        'JWT',
-        'FCM',
-        'REST API',
-        'Firebase',
-      ],
-      category: 'Full-Stack',
-      isFeatured: true,
-      accentColor: Color(0xFF06B6D4),
-      githubUrl: 'https://github.com/your-username/eduguard',
+      githubUrl: 'https://github.com/Somprakash04/Peblo-Story-Buddy',
     ),
     const ProjectModel(
       id: 'portfolio',
       title: 'Flutter Portfolio',
       description:
-          'This portfolio — production-ready Flutter Web with premium design system.',
+          'A production-grade Flutter Web portfolio with a custom design system.',
       longDescription:
-          'A production-ready Flutter Web portfolio built with Clean Architecture, Riverpod, GoRouter, Flutter Animate, Google Fonts, Material 3, dark/light themes, glassmorphism, and full responsiveness across mobile → 4K.',
+          'This portfolio itself — built with Flutter Web using Clean '
+          'Architecture, Riverpod, and GoRouter. Features a custom design '
+          'system with Material 3, Google Fonts, dark/light theming, '
+          'glassmorphism effects, scroll-based animations via Flutter '
+          'Animate, and full responsiveness from mobile to 4K displays.',
       technologies: [
         'Flutter Web',
         'Riverpod',
@@ -234,7 +243,7 @@ abstract class PortfolioData {
       category: 'Web',
       isFeatured: false,
       accentColor: Color(0xFF10B981),
-      githubUrl: 'https://github.com/your-username/portfolio',
+      githubUrl: 'https://github.com/Somprakash04/som_portfolio',
       liveUrl: 'https://your-portfolio.web.app',
     ),
     // ── Add more projects here ────────────────────────────────
@@ -245,44 +254,40 @@ abstract class PortfolioData {
     ExperienceModel(
       title: 'Flutter Developer Intern',
       organization: 'Cognus Technology',
-      startDate: 'Jan 2024',
+      startDate: 'Dec 2025',
+      endDate: 'Apr 2026',
       description:
-          'Developing and maintaining Flutter mobile applications for clients.'
-          ' Contributed Clean Architecture patterns, integrated REST APIs '
-          'and Firebase backend services, and debugged complex platform'
-          ' issues across Android and iOS.',
+          'Developed and maintained Flutter mobile applications for clients. '
+          'Implemented Clean Architecture patterns, integrated REST APIs and '
+          'Firebase backend services, and resolved cross-platform issues '
+          'across Android and iOS.',
       technologies: ['Flutter', 'Dart', 'Firebase', 'REST APIs', 'BLoC'],
       type: ExperienceType.internship,
-      isCurrent: true,
+      isCurrent: false,
       url: 'https://cognustechnology.com',
-    ),
-    ExperienceModel(
-      title: 'Full-Stack Developer — EduGuard',
-      organization: 'Independent Project',
-      startDate: 'Aug 2023',
-      endDate: 'Dec 2023',
-      description:
-          'Architected and delivered a complete school security system: Flutter multi-portal app (50+ Dart files), Node.js/Express REST API, MySQL database, RFID hardware integration (RC522 + ESP32), JWT auth, and FCM push notifications.',
-      technologies: ['Flutter', 'Node.js', 'MySQL', 'ESP32', 'JWT', 'FCM'],
-      type: ExperienceType.project,
     ),
     ExperienceModel(
       title: 'AI Storytelling Platform — Peblo',
       organization: 'Independent Project',
-      startDate: 'Feb 2024',
+      startDate: 'Mar 2026',
       description:
-          'Designed and built Story Buddy — an in-app Flutter module with Pip the robot narrator, TTS narration, comprehension quizzes, and AI story generation. Implemented sealed-class state machines and fpdart typed error handling.',
+          'Designing and building Story Buddy — an in-app Flutter module '
+          'featuring Pip the robot narrator, TTS narration, comprehension '
+          'quizzes, and AI-driven story generation. Implemented sealed-class '
+          'state machines and fpdart for typed, functional error handling.',
       technologies: ['Flutter', 'Riverpod 2.x', 'fpdart', 'TTS', 'AI/LLM'],
       type: ExperienceType.project,
       isCurrent: true,
     ),
     ExperienceModel(
       title: 'B.Tech — Computer Science Engineering',
-      organization: 'Your University, Udaipur',
-      startDate: '2023',
+      organization: 'Geetanjali Institute of Technology Studies, Udaipur',
+      startDate: 'Jul 2023',
       endDate: '2027',
       description:
-          'Pursuing a Bachelor\'s degree in Computer Science Engineering. Coursework: Data Structures, Algorithms, OS, Networks, Database Management Systems.',
+          'Pursuing a Bachelor\'s degree in Computer Science Engineering with '
+          'coursework in Data Structures, Algorithms, Operating Systems, '
+          'Computer Networks, and Database Management Systems.',
       technologies: ['C++', 'Java', 'Python', 'SQL'],
       type: ExperienceType.education,
       isCurrent: true,
@@ -294,44 +299,39 @@ abstract class PortfolioData {
     AchievementModel(
       title: 'Flutter Development Bootcamp',
       issuer: 'Udemy — Dr. Angela Yu',
-      date: '2023',
+      date: '2024',
       type: AchievementType.certification,
       description:
-          'Completed the 30+ hour complete Flutter & Dart bootcamp covering widgets, state, Firebase, and animations.',
+          'Completed a 30+ hour comprehensive Flutter & Dart bootcamp covering '
+          'widgets, state management, Firebase, and animations.',
       icon: Icons.school_outlined,
       color: Color(0xFF8B5CF6),
     ),
     AchievementModel(
-      title: 'GitHub — Open Source Contributor',
+      title: 'GitHub — Building in Public',
       issuer: 'GitHub',
-      date: 'Active',
+      date: 'Ongoing',
       type: AchievementType.coding,
       description:
-          'Active open-source contributor with consistent commit streaks on EduGuard and Peblo projects.',
-      url: 'https://github.com/your-username',
+          'Maintains public GitHub repositories for personal projects with '
+          'consistent commits as new features are developed and technologies '
+          'are explored and learned',
+      url: 'https://github.com/Somprakash04',
       icon: Icons.code_rounded,
       color: Color(0xFF06B6D4),
     ),
     AchievementModel(
-      title: 'LinkedIn — Flutter Content Creator',
-      issuer: 'LinkedIn',
-      date: '2024',
-      type: AchievementType.recognition,
+      title: 'DSA Practice — LeetCode',
+      issuer: 'LeetCode',
+      date: 'Ongoing',
+      type: AchievementType.coding,
       description:
-          'Recognised for consistent Flutter and mobile development content creation, growing a technical audience.',
-      url: 'https://linkedin.com/in/your-profile',
-      icon: Icons.workspace_premium_outlined,
-      color: Color(0xFF0A66C2),
-    ),
-    AchievementModel(
-      title: 'Hardware Integration — RFID + ESP32',
-      issuer: 'EduGuard Project',
-      date: '2023',
-      type: AchievementType.award,
-      description:
-          'Delivered a complete IoT attendance system bridging Flutter mobile ↔ ESP32 hardware via REST API.',
-      icon: Icons.memory_outlined,
-      color: Color(0xFF10B981),
+          'Solved 150+ Data Structures & Algorithms problems in C++ '
+          'across arrays trees, graphs, and dynamic programming, strengthening '
+          'problem-solving skills through efficient, clean, and maintainable code.',
+      url: 'https://leetcode.com/u/Somprakash/',
+      icon: Icons.terminal_rounded,
+      color: Color(0xFFFFA116), // LeetCode's signature orange
     ),
     // ── Add more achievements here ────────────────────────────
   ];
@@ -340,17 +340,16 @@ abstract class PortfolioData {
   static final List<SocialLinkModel> socialLinks = [
     SocialLinkModel(
       platform: 'GitHub',
-      url: 'https://github.com/your-username',
-      // icon: FontAwesomeIcons.github,
+      url: 'https://github.com/Somprakash04',
       icon: FontAwesomeIcons.github,
-      username: '@your-username',
+      username: 'Somprakash04',
       color: const Color(0xFF333333),
     ),
     SocialLinkModel(
       platform: 'LinkedIn',
-      url: 'https://linkedin.com/in/your-profile',
+      url: 'https://www.linkedin.com/in/somprakash-arun-b7683730a/',
       icon: FontAwesomeIcons.linkedin,
-      username: 'your-name',
+      username: 'Somprakash Arun',
       color: const Color(0xFF0A66C2),
     ),
     SocialLinkModel(
@@ -362,9 +361,9 @@ abstract class PortfolioData {
     ),
     SocialLinkModel(
       platform: 'Email',
-      url: 'mailto:your.email@example.com',
+      url: 'mailto:somprakasharun@gmail.com',
       icon: FontAwesomeIcons.envelope,
-      username: 'your.email@example.com',
+      username: 'somprakasharun@gmail.com',
       color: AppColors.violet,
     ),
   ];

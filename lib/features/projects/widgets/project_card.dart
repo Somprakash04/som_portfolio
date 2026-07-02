@@ -53,24 +53,24 @@ class _ProjectCardState extends State<ProjectCard> {
               color: _hov
                   ? accent.withOpacity(0.45)
                   : (isDark
-                      ? AppColors.darkBorder
-                      : AppColors.lightBorder),
+                  ? AppColors.darkBorder
+                  : AppColors.lightBorder),
             ),
             boxShadow: _hov
                 ? [
-                    BoxShadow(
-                      color: accent.withOpacity(0.14),
-                      blurRadius: 28,
-                      offset: const Offset(0, 10),
-                    )
-                  ]
+              BoxShadow(
+                color: accent.withOpacity(0.14),
+                blurRadius: 28,
+                offset: const Offset(0, 10),
+              )
+            ]
                 : [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.04),
-                      blurRadius: 6,
-                      offset: const Offset(0, 2),
-                    )
-                  ],
+              BoxShadow(
+                color: Colors.black.withOpacity(0.04),
+                blurRadius: 6,
+                offset: const Offset(0, 2),
+              )
+            ],
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(AppSpacing.radiusLg),
@@ -155,7 +155,14 @@ class _ProjectCardState extends State<ProjectCard> {
                       const SizedBox(height: 20),
 
                       // ── Action buttons ─────────────────────
-                      Row(
+                      // Wrap (not Row) — on narrow 2-column card
+                      // widths, "Source" + "Live Demo" together can
+                      // exceed available width; Wrap drops the
+                      // second button to its own line instead of
+                      // overflowing, Row had no such protection.
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
                         children: [
                           if (widget.project.githubUrl != null)
                             _ActionBtn(
@@ -164,9 +171,6 @@ class _ProjectCardState extends State<ProjectCard> {
                               url: widget.project.githubUrl!,
                               isDark: isDark,
                             ),
-                          if (widget.project.githubUrl != null &&
-                              widget.project.liveUrl != null)
-                            const SizedBox(width: 8),
                           if (widget.project.liveUrl != null)
                             _ActionBtn(
                               icon: Icons.open_in_new_rounded,
@@ -259,15 +263,15 @@ class _ActionBtnState extends State<_ActionBtn> {
             color: widget.primary
                 ? c.withOpacity(_hov ? 1.0 : 0.12)
                 : (widget.isDark
-                    ? Colors.white.withOpacity(_hov ? 0.1 : 0.06)
-                    : Colors.black.withOpacity(_hov ? 0.08 : 0.04)),
+                ? Colors.white.withOpacity(_hov ? 0.1 : 0.06)
+                : Colors.black.withOpacity(_hov ? 0.08 : 0.04)),
             borderRadius: BorderRadius.circular(AppSpacing.radiusSm),
             border: Border.all(
               color: widget.primary
                   ? c.withOpacity(_hov ? 0.0 : 0.3)
                   : (widget.isDark
-                      ? Colors.white.withOpacity(0.1)
-                      : Colors.black.withOpacity(0.09)),
+                  ? Colors.white.withOpacity(0.1)
+                  : Colors.black.withOpacity(0.09)),
             ),
           ),
           child: Row(
@@ -279,8 +283,8 @@ class _ActionBtnState extends State<_ActionBtn> {
                 color: widget.primary
                     ? (_hov ? Colors.white : c)
                     : (widget.isDark
-                        ? AppColors.darkTextSecondary
-                        : AppColors.lightTextSecondary),
+                    ? AppColors.darkTextSecondary
+                    : AppColors.lightTextSecondary),
               ),
               const SizedBox(width: 6),
               Text(
@@ -290,8 +294,8 @@ class _ActionBtnState extends State<_ActionBtn> {
                   color: widget.primary
                       ? (_hov ? Colors.white : c)
                       : (widget.isDark
-                          ? AppColors.darkTextSecondary
-                          : AppColors.lightTextSecondary),
+                      ? AppColors.darkTextSecondary
+                      : AppColors.lightTextSecondary),
                 ),
               ),
             ],

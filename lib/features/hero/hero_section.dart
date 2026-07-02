@@ -35,7 +35,7 @@ class _HeroSectionState extends ConsumerState<HeroSection> {
     Future.delayed(const Duration(seconds: 3), () {
       if (!mounted) return;
       setState(() =>
-          _titleIdx = (_titleIdx + 1) % PortfolioData.heroTitles.length);
+      _titleIdx = (_titleIdx + 1) % PortfolioData.heroTitles.length);
       _cycle();
     });
   }
@@ -99,38 +99,38 @@ class _HeroSectionState extends ConsumerState<HeroSection> {
   }
 
   Widget _desktopLayout(BuildContext context, bool isDark) => Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            flex: 11,
-            child: _HeroContent(
-              isDark: isDark, titleIdx: _titleIdx,
-              onProjects: () => _goto('projects'),
-              onContact:  () => _goto('contact'),
-            ),
-          ),
-          const SizedBox(width: 56),
-          Expanded(
-            flex: 8,
-            child: _HeroIllustration(isDark: isDark),
-          ),
-        ],
-      );
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      Expanded(
+        flex: 11,
+        child: _HeroContent(
+          isDark: isDark, titleIdx: _titleIdx,
+          onProjects: () => _goto('projects'),
+          onContact:  () => _goto('contact'),
+        ),
+      ),
+      const SizedBox(width: 56),
+      Expanded(
+        flex: 8,
+        child: _HeroIllustration(isDark: isDark),
+      ),
+    ],
+  );
 
   Widget _mobileLayout(BuildContext context, bool isDark) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(
-              child: _HeroIllustration(isDark: isDark, size: 240)),
-          const SizedBox(height: 40),
-          _HeroContent(
-            isDark: isDark, titleIdx: _titleIdx,
-            onProjects: () => _goto('projects'),
-            onContact:  () => _goto('contact'),
-            isMobile: true,
-          ),
-        ],
-      );
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Center(
+          child: _HeroIllustration(isDark: isDark, size: 240)),
+      const SizedBox(height: 40),
+      _HeroContent(
+        isDark: isDark, titleIdx: _titleIdx,
+        onProjects: () => _goto('projects'),
+        onContact:  () => _goto('contact'),
+        isMobile: true,
+      ),
+    ],
+  );
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -189,9 +189,9 @@ class _HeroContent extends StatelessWidget {
             opacity: anim,
             child: SlideTransition(
               position: Tween<Offset>(
-                      begin: const Offset(0, 0.25), end: Offset.zero)
+                  begin: const Offset(0, 0.25), end: Offset.zero)
                   .animate(CurvedAnimation(
-                      parent: anim, curve: Curves.easeOut)),
+                  parent: anim, curve: Curves.easeOut)),
               child: child,
             ),
           ),
@@ -266,12 +266,16 @@ class _HeroContent extends StatelessWidget {
                     ? AppColors.darkTextTertiary
                     : AppColors.lightTextTertiary),
             const SizedBox(width: 6),
-            Text(
-              PortfolioData.location,
-              style: AppTypography.bodySm.copyWith(
-                color: isDark
-                    ? AppColors.darkTextTertiary
-                    : AppColors.lightTextTertiary,
+            Flexible(
+              child: Text(
+                PortfolioData.location,
+                style: AppTypography.bodySm.copyWith(
+                  color: isDark
+                      ? AppColors.darkTextTertiary
+                      : AppColors.lightTextTertiary,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ],
@@ -296,11 +300,11 @@ class _HeroIllustration extends StatefulWidget {
 class _HeroIllustrationState extends State<_HeroIllustration>
     with SingleTickerProviderStateMixin {
   late final AnimationController _ctrl =
-      AnimationController(vsync: this, duration: const Duration(seconds: 3))
-        ..repeat(reverse: true);
+  AnimationController(vsync: this, duration: const Duration(seconds: 3))
+    ..repeat(reverse: true);
   late final Animation<double> _float =
-      Tween<double>(begin: -10, end: 10).animate(
-          CurvedAnimation(parent: _ctrl, curve: Curves.easeInOut));
+  Tween<double>(begin: -10, end: 10).animate(
+      CurvedAnimation(parent: _ctrl, curve: Curves.easeInOut));
 
   @override
   void dispose() {
@@ -328,7 +332,7 @@ class _HeroIllustrationState extends State<_HeroIllustration>
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: AppColors.violet.withOpacity(0.28),
+                    color: AppColors.violet.withValues(alpha: 0.28),
                     blurRadius: 80,
                     spreadRadius: 20,
                   ),
@@ -350,9 +354,9 @@ class _HeroIllustrationState extends State<_HeroIllustration>
                       : AppColors.lightCard,
                   child: PortfolioData.profileImage.isNotEmpty
                       ? Image.network(PortfolioData.profileImage,
-                          fit: BoxFit.cover,
-                          errorBuilder: (_, __, ___) =>
-                              _Placeholder(size: widget.size))
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, _, _) =>
+                          _Placeholder(size: widget.size))
                       : _Placeholder(size: widget.size),
                 ),
               ),
@@ -404,6 +408,7 @@ class _Placeholder extends StatelessWidget {
                 : 'S',
             style: TextStyle(
               fontSize: size * 0.28,
+              // fontSize: size * 0.28,
               fontWeight: FontWeight.w900,
             ),
           ),
@@ -428,10 +433,10 @@ class _FloatBadge extends StatelessWidget {
         color: isDark ? AppColors.darkCard : AppColors.lightSurface,
         borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
         border: Border.all(
-          color: isDark ? AppColors.darkBorder : AppColors.lightBorder),
+            color: isDark ? AppColors.darkBorder : AppColors.lightBorder),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(isDark ? 0.35 : 0.1),
+            color: Colors.black.withValues(alpha: isDark ? 0.35 : 0.1),
             blurRadius: 14,
             offset: const Offset(0, 4),
           ),
@@ -442,13 +447,17 @@ class _FloatBadge extends StatelessWidget {
         children: [
           Icon(icon, size: 13, color: AppColors.violet),
           const SizedBox(width: 6),
-          Text(
-            label,
-            style: AppTypography.caption.copyWith(
-              fontWeight: FontWeight.w600,
-              color: isDark
-                  ? AppColors.darkTextSecondary
-                  : AppColors.lightTextSecondary,
+          Flexible(
+            child: Text(
+              label,
+              style: AppTypography.caption.copyWith(
+                fontWeight: FontWeight.w600,
+                color: isDark
+                    ? AppColors.darkTextSecondary
+                    : AppColors.lightTextSecondary,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],
@@ -469,9 +478,9 @@ class _AvailableBadge extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
-        color: AppColors.violet.withOpacity(0.1),
+        color: AppColors.violet.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(AppSpacing.radiusFull),
-        border: Border.all(color: AppColors.violet.withOpacity(0.22)),
+        border: Border.all(color: AppColors.violet.withValues(alpha: 0.22)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -482,13 +491,19 @@ class _AvailableBadge extends StatelessWidget {
                 color: AppColors.emerald, shape: BoxShape.circle),
           ),
           const SizedBox(width: 8),
-          Text(
-            'Available for opportunities',
-            style: AppTypography.caption.copyWith(
-              color: isDark
-                  ? AppColors.darkTextSecondary
-                  : AppColors.lightTextSecondary,
-              fontWeight: FontWeight.w500,
+          // Flexible (loose fit) lets the text shrink-to-ellipsis on
+          // narrow screens instead of forcing the Row past its bounds.
+          Flexible(
+            child: Text(
+              'Available for opportunities',
+              style: AppTypography.caption.copyWith(
+                color: isDark
+                    ? AppColors.darkTextSecondary
+                    : AppColors.lightTextSecondary,
+                fontWeight: FontWeight.w500,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],
@@ -516,13 +531,15 @@ class _GridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final p = Paint()
-      ..color = (isDark ? Colors.white : Colors.black).withOpacity(0.028)
+      ..color = (isDark ? Colors.white : Colors.black).withValues(alpha: 0.028)
       ..strokeWidth = 1;
     const step = 44.0;
-    for (double x = 0; x < size.width; x += step)
+    for (double x = 0; x < size.width; x += step) {
       canvas.drawLine(Offset(x, 0), Offset(x, size.height), p);
-    for (double y = 0; y < size.height; y += step)
+    }
+    for (double y = 0; y < size.height; y += step) {
       canvas.drawLine(Offset(0, y), Offset(size.width, y), p);
+    }
   }
 
   @override
@@ -548,7 +565,7 @@ class _GlowOrb extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           gradient: RadialGradient(colors: [
-            color.withOpacity(opacity),
+            color.withValues(alpha: opacity),
             Colors.transparent,
           ]),
         ),

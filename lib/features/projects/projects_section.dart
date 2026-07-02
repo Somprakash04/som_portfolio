@@ -55,7 +55,7 @@ class _ProjectsSectionState extends ConsumerState<ProjectsSection> {
                 label: '03  PROJECTS',
                 title: 'What I\'ve Built',
                 subtitle:
-                    'Production-grade apps shipping real value — from mobile to IoT.',
+                'Real-world apps solving real problems — from concept to deployment.',
               ),
 
               // ── Filter bar ──────────────────────────────────

@@ -57,7 +57,7 @@ class _CustomButtonState extends State<CustomButton> {
           decoration: _decoration(isDark),
           child: Row(
             mainAxisSize:
-                widget.fullWidth ? MainAxisSize.max : MainAxisSize.min,
+            widget.fullWidth ? MainAxisSize.max : MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (widget.isLoading)
@@ -74,11 +74,15 @@ class _CustomButtonState extends State<CustomButton> {
                   Icon(widget.icon, size: 15, color: _fgColor(isDark)),
                   const SizedBox(width: 7),
                 ],
-                Text(
-                  widget.label,
-                  style: AppTypography.button.copyWith(
-                    fontSize: widget.small ? 12 : 14,
-                    color: _fgColor(isDark),
+                Flexible(
+                  child: Text(
+                    widget.label,
+                    style: AppTypography.button.copyWith(
+                      fontSize: widget.small ? 12 : 14,
+                      color: _fgColor(isDark),
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
                 if (widget.trailingIcon != null) ...[
@@ -139,8 +143,8 @@ class _CustomButtonState extends State<CustomButton> {
         return BoxDecoration(
           color: _hovered
               ? (isDark
-                  ? Colors.white.withOpacity(0.07)
-                  : Colors.black.withOpacity(0.04))
+              ? Colors.white.withOpacity(0.07)
+              : Colors.black.withOpacity(0.04))
               : Colors.transparent,
           borderRadius: BorderRadius.circular(AppSpacing.radiusSm),
         );
@@ -152,8 +156,8 @@ class _CustomButtonState extends State<CustomButton> {
             color: _hovered
                 ? AppColors.violet
                 : (isDark
-                    ? AppColors.darkBorder
-                    : AppColors.lightBorder),
+                ? AppColors.darkBorder
+                : AppColors.lightBorder),
             width: 1.5,
           ),
         );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum SkillCategory { mobile, backend, tools }
+enum SkillCategory { mobile, backend, core, tools }
 
 /// ─────────────────────────────────────────────────────────────
 /// SkillModel — a single technology / skill entry.

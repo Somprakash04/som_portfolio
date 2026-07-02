@@ -20,6 +20,7 @@ class FooterSection extends StatelessWidget {
     final isDark   = Theme.of(context).brightness == Brightness.dark;
     final isMobile = R.isMobile(context);
     final year     = DateTime.now().year;
+    final width = MediaQuery.sizeOf(context).width;
 
     return Container(
       padding: EdgeInsets.symmetric(
@@ -40,9 +41,12 @@ class FooterSection extends StatelessWidget {
         Column(
           children: [
             // ── Top row ──────────────────────────────────────
-            isMobile
-                ? _mobileTop(isDark)
-                : _desktopTop(isDark),
+            // isMobile
+            //     ? _mobileTop(isDark)
+            //     : _desktopTop(isDark),
+            R.isDesktop(context)
+                ? _desktopTop(isDark)
+                : _mobileTop(isDark),
 
             const SizedBox(height: AppSpacing.xl),
             Divider(
@@ -56,6 +60,9 @@ class FooterSection extends StatelessWidget {
             isMobile
                 ? _mobileBottom(isDark, year)
                 : _desktopBottom(isDark, year),
+            // R.isDesktop(context)
+            //     ? _desktopTop(isDark)
+            //     : _mobileTop(isDark),
           ],
         ),
       ),

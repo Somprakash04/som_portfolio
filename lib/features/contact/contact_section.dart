@@ -49,7 +49,8 @@ class _ContactSectionState extends ConsumerState<ContactSection> {
                 label: '06  CONTACT',
                 title: 'Let\'s Work Together',
                 subtitle:
-                    'Have a project in mind, want to collaborate, or just say hi? I\'d love to hear from you.',
+                    'Have a project in mind, want to collaborate, '
+                        'or just say hi? I\'d love to hear from you.',
               ),
 
               AnimatedOpacity(

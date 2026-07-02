@@ -65,32 +65,32 @@ class _AboutSectionState extends ConsumerState<AboutSection> {
   }
 
   Widget _desktop(bool isDark) => Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(flex: 11, child: _Bio(isDark: isDark, visible: _visible)),
-          const SizedBox(width: 48),
-          Expanded(
-            flex: 8,
-            child: Column(
-              children: [
-                _StatsGrid(isDark: isDark, visible: _visible),
-                const SizedBox(height: 24),
-                _StrengthsList(isDark: isDark, visible: _visible),
-              ],
-            ),
-          ),
-        ],
-      );
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Expanded(flex: 11, child: _Bio(isDark: isDark, visible: _visible)),
+      const SizedBox(width: 48),
+      Expanded(
+        flex: 8,
+        child: Column(
+          children: [
+            _StatsGrid(isDark: isDark, visible: _visible),
+            const SizedBox(height: 24),
+            _StrengthsList(isDark: isDark, visible: _visible),
+          ],
+        ),
+      ),
+    ],
+  );
 
   Widget _mobile(bool isDark) => Column(
-        children: [
-          _Bio(isDark: isDark, visible: _visible),
-          const SizedBox(height: 32),
-          _StatsGrid(isDark: isDark, visible: _visible),
-          const SizedBox(height: 24),
-          _StrengthsList(isDark: isDark, visible: _visible),
-        ],
-      );
+    children: [
+      _Bio(isDark: isDark, visible: _visible),
+      const SizedBox(height: 32),
+      _StatsGrid(isDark: isDark, visible: _visible),
+      const SizedBox(height: 24),
+      _StrengthsList(isDark: isDark, visible: _visible),
+    ],
+  );
 }
 
 // ── Bio paragraphs ───────────────────────────────────────────
@@ -114,7 +114,7 @@ class _Bio extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 18),
             child: Text(
               p,
-              style: AppTypography.bodyLg.copyWith(
+              style: AppTypography.body.copyWith(
                 color: isDark
                     ? AppColors.darkTextSecondary
                     : AppColors.lightTextSecondary,
@@ -137,52 +137,67 @@ class _StatsGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final entries = PortfolioData.stats.entries.toList();
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 14,
-        mainAxisSpacing: 14,
-        childAspectRatio: 1.7,
-      ),
-      itemCount: entries.length,
-      itemBuilder: (ctx, i) {
-        final e = entries[i];
-        return AnimatedOpacity(
-          opacity: visible ? 1 : 0,
-          duration: Duration(milliseconds: 400 + i * 100),
-          child: GlassCard(
-            padding: const EdgeInsets.all(AppSpacing.md),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ShaderMask(
-                  blendMode: BlendMode.srcIn,
-                  shaderCallback: (b) =>
-                      AppColors.primaryGradient.createShader(b),
-                  child: Text(
-                    e.value,
-                    style: AppTypography.h3.copyWith(
-                        fontWeight: FontWeight.w800),
-                  ),
+    const cols = 2;
+    const gap = 14.0;
+
+    // Wrap + content-sized cards (NOT GridView+childAspectRatio).
+    // A fixed aspect ratio forces an exact height regardless of how
+    // much room the h3 number + caption label actually need — on
+    // narrow mobile widths that caused repeated bottom overflow.
+    // Wrap lets each card size to its own natural content height.
+    return LayoutBuilder(builder: (_, constraints) {
+      final cardW =
+      ((constraints.maxWidth - gap * (cols - 1)) / cols)
+          .clamp(0.0, double.infinity);
+
+      return Wrap(
+        spacing: gap,
+        runSpacing: gap,
+        children: entries.asMap().entries.map((entry) {
+          final i = entry.key;
+          final e = entry.value;
+          return AnimatedOpacity(
+            opacity: visible ? 1 : 0,
+            duration: Duration(milliseconds: 400 + i * 100),
+            child: SizedBox(
+              width: cardW,
+              child: GlassCard(
+                padding: const EdgeInsets.all(AppSpacing.md),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ShaderMask(
+                      blendMode: BlendMode.srcIn,
+                      shaderCallback: (b) =>
+                          AppColors.primaryGradient.createShader(b),
+                      child: Text(
+                        e.value,
+                        style: AppTypography.h3.copyWith(
+                            fontWeight: FontWeight.w800),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      e.key,
+                      style: AppTypography.caption.copyWith(
+                        color: isDark
+                            ? AppColors.darkTextTertiary
+                            : AppColors.lightTextTertiary,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  e.key,
-                  style: AppTypography.caption.copyWith(
-                    color: isDark
-                        ? AppColors.darkTextTertiary
-                        : AppColors.lightTextTertiary,
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
-        );
-      },
-    );
+          );
+        }).toList(),
+      );
+    });
   }
 }
 

@@ -49,8 +49,18 @@ class _PortfolioNavBarState extends ConsumerState<PortfolioNavBar> {
   Widget build(BuildContext context) {
     final isDark    = ref.watch(themeModeProvider) == ThemeMode.dark;
     final progress  = ref.watch(scrollProgressProvider);
-    final isMobile  = R.isMobile(context);
     final scrolled  = progress > 0.01;
+
+    // Direct width check instead of R.isMobile (<=480px). The six nav
+    // links ('Achievements' is 12 characters) need roughly 540px of
+    // text+padding alone, plus the logo, theme toggle, and page
+    // padding — about 750px minimum total. R.isMobile only switched
+    // to the hamburger menu below 480px, so the ENTIRE 481-750px
+    // range (ordinary tablet / resized-browser widths) tried to
+    // render the full link row with nowhere near enough space —
+    // the actual cause of the large overflow values in the crash.
+    // 880px gives a safe buffer above that minimum.
+    final compact = MediaQuery.sizeOf(context).width < 880;
 
     return Column(
       children: [
@@ -76,29 +86,29 @@ class _PortfolioNavBarState extends ConsumerState<PortfolioNavBar> {
                 bottom: false,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: isMobile ? 20 : 40,
+                    horizontal: compact ? 20 : 40,
                   ),
                   child: SizedBox(
-                    height: isMobile
+                    height: compact
                         ? AppSpacing.navHeightMobile
                         : AppSpacing.navHeight,
                     child: Row(
                       children: [
                         _Logo(isDark: isDark),
                         const Spacer(),
-                        if (!isMobile)
+                        if (!compact)
                           Row(
                             children: _items
                                 .map((i) => _NavLink(
-                                      label: i,
-                                      onTap: () => _scrollTo(i),
-                                      isDark: isDark,
-                                    ))
+                              label: i,
+                              onTap: () => _scrollTo(i),
+                              isDark: isDark,
+                            ))
                                 .toList(),
                           ),
                         const SizedBox(width: 10),
                         _ThemeToggle(isDark: isDark),
-                        if (isMobile) ...[
+                        if (compact) ...[
                           const SizedBox(width: 6),
                           _MenuBtn(
                             open: _drawerOpen,
@@ -116,8 +126,8 @@ class _PortfolioNavBarState extends ConsumerState<PortfolioNavBar> {
           ),
         ),
 
-        // ── Mobile drawer ───────────────────────────────────
-        if (isMobile)
+        // ── Compact (mobile/tablet) drawer ───────────────────
+        if (compact)
           AnimatedCrossFade(
             firstChild: const SizedBox.shrink(),
             secondChild: _MobileDrawer(
@@ -192,8 +202,8 @@ class _NavLinkState extends State<_NavLink> {
               color: _hov
                   ? AppColors.violet
                   : (widget.isDark
-                      ? AppColors.darkTextSecondary
-                      : AppColors.lightTextSecondary),
+                  ? AppColors.darkTextSecondary
+                  : AppColors.lightTextSecondary),
             ),
           ),
         ),
@@ -306,25 +316,25 @@ class _MobileDrawer extends StatelessWidget {
             .asMap()
             .entries
             .map((e) => GestureDetector(
-                  onTap: () => onTap(e.value),
-                  child: Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 14),
-                    child: Text(
-                      e.value,
-                      style: AppTypography.navLink.copyWith(
-                        fontSize: 15,
-                        color: isDark
-                            ? AppColors.darkTextSecondary
-                            : AppColors.lightTextSecondary,
-                      ),
-                    ),
-                  ),
-                )
-                    .animate(delay: Duration(milliseconds: e.key * 40))
-                    .fadeIn(duration: 200.ms)
-                    .slideX(begin: -0.05, end: 0))
+          onTap: () => onTap(e.value),
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(
+                horizontal: 20, vertical: 14),
+            child: Text(
+              e.value,
+              style: AppTypography.navLink.copyWith(
+                fontSize: 15,
+                color: isDark
+                    ? AppColors.darkTextSecondary
+                    : AppColors.lightTextSecondary,
+              ),
+            ),
+          ),
+        )
+            .animate(delay: Duration(milliseconds: e.key * 40))
+            .fadeIn(duration: 200.ms)
+            .slideX(begin: -0.05, end: 0))
             .toList(),
       ),
     );

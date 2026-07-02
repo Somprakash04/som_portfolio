@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_spacing.dart';
 import '../../../core/constants/app_typography.dart';
@@ -56,7 +54,7 @@ class _AchievementCardState extends State<AchievementCard> {
             borderRadius: BorderRadius.circular(AppSpacing.radiusLg),
             border: Border.all(
               color: _hov
-                  ? _accent.withOpacity(0.45)
+                  ? _accent.withValues(alpha: 0.45)
                   : (widget.isDark
                       ? AppColors.darkBorder
                       : AppColors.lightBorder),
@@ -64,7 +62,7 @@ class _AchievementCardState extends State<AchievementCard> {
             boxShadow: _hov
                 ? [
                     BoxShadow(
-                      color: _accent.withOpacity(0.13),
+                      color: _accent.withValues(alpha: 0.13),
                       blurRadius: 22,
                       offset: const Offset(0, 7),
                     )
@@ -81,10 +79,10 @@ class _AchievementCardState extends State<AchievementCard> {
                     width: 42,
                     height: 42,
                     decoration: BoxDecoration(
-                      color: _accent.withOpacity(0.12),
+                      color: _accent.withValues(alpha: 0.12),
                       shape: BoxShape.circle,
                       border: Border.all(
-                          color: _accent.withOpacity(0.3)),
+                          color: _accent.withValues(alpha: 0.3)),
                     ),
                     child: Icon(
                       widget.achievement.icon ??
@@ -134,7 +132,7 @@ class _AchievementCardState extends State<AchievementCard> {
                         : AppColors.lightTextTertiary,
                     height: 1.65,
                   ),
-                  maxLines: 3,
+                  maxLines: 4,
                   overflow: TextOverflow.ellipsis,
                 ),
               ],
@@ -190,10 +188,10 @@ class _TypeChip extends StatelessWidget {
       padding:
           const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
-        color: AppColors.violet.withOpacity(0.1),
+        color: AppColors.violet.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(AppSpacing.radiusFull),
         border:
-            Border.all(color: AppColors.violet.withOpacity(0.22)),
+            Border.all(color: AppColors.violet.withValues(alpha: 0.22)),
       ),
       child: Text(
         _label,

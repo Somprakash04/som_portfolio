@@ -36,6 +36,8 @@ class _SkillsSectionState extends ConsumerState<SkillsSection> {
         .where((s) => s.category == SkillCategory.backend).toList();
     final tools   = PortfolioData.skills
         .where((s) => s.category == SkillCategory.tools).toList();
+    final core   = PortfolioData.skills
+        .where((s) => s.category == SkillCategory.core).toList();
 
     return VisibilityDetector(
       key: const Key('skills-vis'),
@@ -75,6 +77,16 @@ class _SkillsSectionState extends ConsumerState<SkillsSection> {
                 visible: _visible,
                 isDark: isDark,
                 staggerOffset: mobile.length,
+              ),
+              const SizedBox(height: AppSpacing.xxl),
+              _CatBlock(
+                emoji: '🧠',
+                label: 'Core CS Foundations',
+                skills: core,
+                accent: AppColors.amber, // pick any accent color that fits your palette
+                visible: _visible,
+                isDark: isDark,
+                staggerOffset: mobile.length + backend.length,
               ),
               const SizedBox(height: AppSpacing.xxl),
               _CatBlock(
